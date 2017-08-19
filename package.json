@@ -21,7 +21,8 @@
     "url": "https://github.com/loveencounterflow/buzhash-demo"
   },
   "scripts": {
-    "test": "tap lib/test"
+    "build": "coffee --map -o lib -c src",
+    "test": "npm run build && node lib/tests.js"
   },
   "version": "0.0.3",
   "dependencies": {

@@ -1,5 +1,18 @@
 'use strict';
 
+# ############################################################################################################
+# CND                       = require 'cnd'
+# rpr                       = CND.rpr
+# badge                     = 'BUZHASH'
+# debug                     = CND.get_logger 'debug',     badge
+# alert                     = CND.get_logger 'alert',     badge
+# whisper                   = CND.get_logger 'whisper',   badge
+# warn                      = CND.get_logger 'warn',      badge
+# help                      = CND.get_logger 'help',      badge
+# urge                      = CND.get_logger 'urge',      badge
+# info                      = CND.get_logger 'info',      badge
+
+
 ```
 class BuzHash {
   constructor (size) {
@@ -86,23 +99,5 @@ const base = [
 ```
 
 
-
-############################################################################################################
-CND = require '/home/flow/io/cnd'
-rpr                       = CND.rpr
-badge                     = 'KBM/MIXINS/DOWNLOAD'
-debug                     = CND.get_logger 'debug',     badge
-alert                     = CND.get_logger 'alert',     badge
-whisper                   = CND.get_logger 'whisper',   badge
-warn                      = CND.get_logger 'warn',      badge
-help                      = CND.get_logger 'help',      badge
-urge                      = CND.get_logger 'urge',      badge
-info                      = CND.get_logger 'info',      badge
-
-d = new BuzHash 32
-debug d.update 'x'
-debug d.update 'y'
-d = new BuzHash 32
-debug d.update 'y'
 
 
