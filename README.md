@@ -1,16 +1,35 @@
 
 
-This is a demo and proof of concept how to implement chunkwise content-addressed storage. The idea is to run
-a rolling hash over the bytes of a file to be stored and to look for a certain bit pattern to appear in
-that hash digest. When the pattern is found, a (cryptographic) hash digest for the bytes read so far is
-computed (the 'content hash' or CH; I'm using the first 17 bytes of SHA1 expressed in lower-case hexadecimal
-here). The chunk is stored under that CH (unless it is already known to the storage) and the CH is appended
-to that file's 'assembly' (the list of content hashes that make up the content of the file).
+This is a demo and proof of concept how to implement chunkwise content-addressed storage.
+
+The idea is to run a rolling hash over the bytes of a file to be stored and to look for a certain bit
+pattern to appear in that hash digest. When the pattern is found, a (cryptographic) hash digest for the
+bytes read so far is computed (the 'content hash' or CH; I'm using the first 17 bytes of SHA1 expressed in
+lower-case hexadecimal here). The chunk is stored under that CH (unless it is already known to the storage)
+and the CH is appended to that file's 'assembly' (the list of content hashes that make up the content of the
+file).
+
+To read a file from storage, each chunk has to be retrieved from the assembly list in the original order.
+
+With suitable parameters and real-world (non-random) inputs, many chunks will found to be repeated in more
+than one file, providing a certain amount of compression.
+
+Storing [one million digits of π](http://www.piday.org/million/) will *probably* [pun intended] take more
+storage bytes than a flat file in a traditional file system (because of all the administrative overhead); on
+the bright side, it will *probably* result in a number of chunks of varying length (which is good for
+streaming, provided the chunks are not too large).
+
+Actually the rolling hash is sort of a smoke in the overall algorithm which also sort-of works when you
+don't compute the rolling hash but look for bit patterns of the original input; the disadvantage with that
+method is that almost any input with a repeating pattern (which should be easily compressible) can
+circumvent boundary detection (and in fact, without additional guards such as setting an upper limit to
+chunksizes allows anyone who knows details of the rolling hash to game the system and compromise it to store
+bigger-than-healthy chunks).
 
 See also
 
 * https://github.com/datproject/rabin
-
+* https://en.wikipedia.org/wiki/Rolling_hash#Cyclic_polynomial
 
 ```bash
 npm run build && node lib/test.js
