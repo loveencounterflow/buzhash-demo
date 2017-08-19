@@ -19,17 +19,21 @@ storage bytes than a flat file in a traditional file system (because of all the 
 the bright side, it will *probably* result in a number of chunks of varying length (which is good for
 streaming, provided the chunks are not too large).
 
-Actually the rolling hash is sort of a smoke in the overall algorithm which also sort-of works when you
+Actually the rolling hash is 'almost not essential' for the algorithm which also sort-of works when you
 don't compute the rolling hash but look for bit patterns of the original input; the disadvantage with that
-method is that almost any input with a repeating pattern (which should be easily compressible) can
-circumvent boundary detection (and in fact, without additional guards such as setting an upper limit to
-chunksizes allows anyone who knows details of the rolling hash to game the system and compromise it to store
-bigger-than-healthy chunks).
+method is that without a hash-like function, it's easy to come up with inputs that circumvent boundary
+detection and compromise the system by making it store bigger-than-healthy chunks. Since it can not fully be
+precluded that such big chunks appear randomly, it is probably a good idea to force chunk cutoff at a
+certain size limit.
 
 See also
 
 * https://github.com/datproject/rabin
 * https://en.wikipedia.org/wiki/Rolling_hash#Cyclic_polynomial
+* https://github.com/borgbackup/borg/blob/master/src/borg/_chunker.c
+
+
+## Run the Demo
 
 ```bash
 npm run build && node lib/test.js
