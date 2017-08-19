@@ -15,9 +15,8 @@ urge                      = CND.get_logger 'urge',      badge
 info                      = CND.get_logger 'info',      badge
 echo                      = CND.echo.bind CND
 #...........................................................................................................
-Buzhash                   = require './index'
-data                      = require './testdata'
-crypto                    = require 'crypto'
+Buzhash                   = require '..'
+CRYPTO                    = require 'crypto'
 hash_name                 = 'sha1'
 
 #-----------------------------------------------------------------------------------------------------------
@@ -25,7 +24,7 @@ new_buzhash = -> new Buzhash 32
 
 #-----------------------------------------------------------------------------------------------------------
 compress = ( chunks, buffer ) ->
-  sha       = crypto.createHash hash_name
+  sha       = CRYPTO.createHash hash_name
   buzhash   = new_buzhash()
   pattern   = ( 2 ** 5 ) - 1
   # pattern   = 0b10101
@@ -40,7 +39,7 @@ compress = ( chunks, buffer ) ->
     is_new        = not chunks[ ch ]?
     chunks[ ch ]  = text if is_new
     R.push ch
-    sha           = crypto.createHash hash_name
+    sha           = CRYPTO.createHash hash_name
     ### Reset Buzhash; if we'd go on using the old one, synchronization would suffer: ###
     buzhash       = new_buzhash()
     i_prv         = i
