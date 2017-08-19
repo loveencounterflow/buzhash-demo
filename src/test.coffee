@@ -60,7 +60,7 @@ compress = ( chunks, buffer ) ->
 
 #-----------------------------------------------------------------------------------------------------------
 ch_from_text = ( text ) ->
-  sha       = crypto.createHash hash_name
+  sha       = CRYPTO.createHash hash_name
   sha.update new Buffer text
   return ( sha.digest 'hex' ).slice 0, 17
 
