@@ -1,53 +1,29 @@
 {
-  "_from": "buzhash",
-  "_id": "buzhash@0.0.2",
-  "_inBundle": false,
-  "_integrity": "sha1-S82AiN5dJibdaq5Tap6e8d0j3E4=",
-  "_location": "/buzhash",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "buzhash",
-    "name": "buzhash",
-    "escapedName": "buzhash",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/buzhash/-/buzhash-0.0.2.tgz",
-  "_shasum": "4bcd8088de5d2626dd6aae536a9e9ef1dd23dc4e",
-  "_spec": "buzhash",
-  "_where": "/tmp/x",
-  "author": {
+  "original-author": {
     "name": "Evan Verworn",
     "email": "evan@verworn.ca"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Rolling buzhash",
   "engines": {
     "node": ">=4.0.0"
   },
   "keywords": [
-    "rolling",
-    "hash"
+    "rolling hash",
+    "CAS",
+    "content hash",
+    "content-addressed storage"
   ],
-  "license": "ISC",
-  "main": "index.js",
-  "name": "buzhash",
+  "license": "MIT",
+  "main": "lib/main.js",
+  "name": "buzhash-demo",
   "repository": {
     "type": "git",
-    "url": "git@verworn.net:buzhash"
+    "url": "https://github.com/loveencounterflow/buzhash-demo"
   },
   "scripts": {
-    "test": "node test"
+    "test": "tap lib/test"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "cnd": "^4.3.1",
     "coffeenode-suspend": "^0.1.11",
